@@ -5,13 +5,13 @@ const connection = require('../database/db')
 // console.log(connection)
 
 router.get('/', (req, res) => {
-    connection.query('SELECT * FROM users', (error, result) => {
+    connection.query('SELECT * FROM users', (error, results) => {
         if(error) {
             throw error
-        } else { 
-            res.send(result)
+        } else {
+            console.log(results)
+            res.render('index', { results })
         }
-        
     })
 })
 router.get('/contact', (req, res) => {
