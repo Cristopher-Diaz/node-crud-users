@@ -1,7 +1,8 @@
 const connection = require('../database/db')
+const { use } = require('../routes/router')
 
 exports.showIndexView = (req, res) => {
-  connection.query('SELECT * FROM users', (error, results) => {
+  connection.query('SELECT * FROM users WHERE deleted_at IS NULL', (error, results) => {
     if (error) {
       throw error
     } else {
@@ -54,6 +55,21 @@ exports.postEditUser = (req, res)  => {
       return res.status(500).send('Error al actualizar el usuario.')
     }
 
+    res.redirect('/')
+  })
+}
+
+
+exports.postDeleteUser = (req, res) => {
+  const userID = req.params.id
+  const query = 'UPDATE users SET deleted_at = NOW() WHERE id = ?'
+  console.log(userID)
+  connection.query(query, [userID],  (err, results) => {
+    if (err) {
+      console.error('Error al actualizar deleted_at:', err)
+      return res.status(500).send('Error al actualizar el usuario.')
+    }
+  
     res.redirect('/')
   })
 }

@@ -18,4 +18,7 @@ router.route('/edit/:id')
   // POST Edición de un usuario
   .post(crud.postEditUser)
 
+// POST Borrar usuarios 
+router.get('/delete/:id', crud.postDeleteUser)
+
 module.exports = router
