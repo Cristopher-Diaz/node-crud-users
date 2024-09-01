@@ -1,0 +1,24 @@
+<div class="container mt-4">
+  <div class="card border-secondary">
+    <div class="card-header">Nuevo registro</div>
+    <div class="card-body">
+      <form action="/save" method="post">
+        <div class="mb-3">
+          <label for="userName" class="form-label">Nombre usuario</label>
+          <input type="text" class="form-control" id="userName" aria-describedby="userNameHelp">
+          <div id="userNameHelp" class="form-text">Ingrese nombre del usuario</div>
+        </div>
+        <div class="mb-3">
+          <label for="userRole" class="form-label">Rol del usuario</label>
+          <select class="form-select" name="userRole" id="userRole">
+            <option value="client">Cliente</option>
+            <option value="admin">Admin</option>
+          </select>
+          <div id="userRole" class="form-text">Seleccione rol del usuario</div>
+        </div>
+        <button type="submit" class="btn btn-success">Guardar</button>
+        <a href="/" class="btn btn-secondary">Cancelar</a>
+      </form>
+    </div>
+  </div>
+</div>
