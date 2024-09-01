@@ -1,21 +1,15 @@
 const express = require('express')
 const router = express.Router()
 
-const connection = require('../database/db')
-// console.log(connection)
+const crud = require('../controllers/CrudController')
 
-router.get('/', (req, res) => {
-    connection.query('SELECT * FROM users', (error, results) => {
-        if(error) {
-            throw error
-        } else {
-            console.log(results)
-            res.render('index', { results })
-        }
-    })
-})
-router.get('/contact', (req, res) => {
-    res.send('Contacto')
-})
+// GET Mostrar registros
+router.get('/', crud.showIndexView)
+
+router.route('/create')
+  // GET Render Formulario de creación
+  .get(crud.showCreateView)
+  // POST Crear usuario
+  .post(crud.postCreateUser)
 
 module.exports = router
