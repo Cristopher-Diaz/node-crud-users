@@ -5,7 +5,6 @@ exports.showIndexView = (req, res) => {
     if (error) {
       throw error
     } else {
-      console.log(results)
       res.render('index', { results })
     }
   })
@@ -27,6 +26,34 @@ exports.postCreateUser = (req, res) => {
         message: 'Faltan datos necesarios',
       })
     }
+    res.redirect('/')
+  })
+}
+
+exports.showEditView = (req, res) => {
+  const userID = req.params.id
+  const query = 'SELECT * FROM users WHERE id=?'
+  connection.query(query, [userID], (err, results) => {
+    if (err) {
+      console.error('Error al consultar el usuario:', err)
+      return res.status(400).json({
+        message: 'Faltan datos necesarios',
+      })
+    }
+    res.render('edit', { user: results[0] })
+  })
+}
+
+exports.postEditUser = (req, res)  => {
+  const userID = req.params.id
+  const { userName, userRole } = req.body
+  const query = 'UPDATE users SET name = ?, role = ? WHERE id = ?'
+  connection.query(query, [userName, userRole, userID], (err, results) => {
+    if (err) {
+      console.error('Error al actualizar el usuario:', err)
+      return res.status(500).send('Error al actualizar el usuario.')
+    }
+
     res.redirect('/')
   })
 }

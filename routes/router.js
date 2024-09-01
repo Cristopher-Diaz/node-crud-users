@@ -12,4 +12,10 @@ router.route('/create')
   // POST Crear usuario
   .post(crud.postCreateUser)
 
+router.route('/edit/:id')
+  // GET Render Formulario de edición
+  .get(crud.showEditView)
+  // POST Edición de un usuario
+  .post(crud.postEditUser)
+
 module.exports = router
