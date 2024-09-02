@@ -83,6 +83,6 @@ Sigue estos pasos para configurar el proyecto en tu máquina local:
     INSERT INTO users (name, role)
     VALUES 
     ('Alice', 'admin'),
-    ('Bob', 'user'),
-    ('Charlie', 'user');
+    ('Bob', 'client'),
+    ('Charlie', 'client');
     ```
